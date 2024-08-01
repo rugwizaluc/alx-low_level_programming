@@ -1,6 +1,19 @@
 #include "lists.h"
 #include <stdlib.h>
+/**
+ * _strlen - gets the length of a string
+ * @s: string
+ * 
+ * Return: length of the string
+ */
+int _strlen(const char *s)
+{
+    int i;
 
+    for (i = 0; s[i]; i++)
+        ;
+    return (i);
+}
 /**
  * add_node - adds a new node at the beginning of a list
  * @head: double pointer to the list's head

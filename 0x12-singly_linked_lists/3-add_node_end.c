@@ -11,11 +11,11 @@
  */
 int _strlen(const char *s)
 {
-    int i;
-
-    for (i = 0; s[i]; i++)
-        ;
-    return (i);
+  int i;
+  
+  for (i = 0; s[i]; i++)
+    ;
+  return (i);
 }
 
 /**
@@ -26,19 +26,19 @@ int _strlen(const char *s)
  */
 char *_strdup(const char *src)
 {
-    int len, i;
-    char *dest;
+  int len, i;
+  char *dest;
 
-    len = _strlen(src);
-    dest = malloc((len + 1) * sizeof(char));
-    if (dest == NULL)
-        return (NULL);
-
-    for (i = 0; src[i]; i++)
-        dest[i] = src[i];
-    dest[i] = '\0';
-
-    return (dest);
+  len = _strlen(src);
+  dest = malloc((len + 1) * sizeof(char));
+  if (dest == NULL)
+    return (NULL);
+  
+  for (i = 0; src[i]; i++)
+    dest[i] = src[i];
+  dest[i] = '\0';
+  
+  return (dest);
 }
 
 /**
@@ -50,38 +50,39 @@ char *_strdup(const char *src)
  */
 list_t *add_node_end(list_t **head, const char *str)
 {
-    list_t *new, *current;
-    char *dupstr;
+  list_t *new, *current;
+  char *dupstr;
 
-    if (str == NULL)
-        return (NULL);
-
-    dupstr = _strdup(str);
-    if (dupstr == NULL)
-        return (NULL);
-
-    new = malloc(sizeof(list_t));
-    if (new == NULL)
+  if (str == NULL)
+    return (NULL);
+  
+  dupstr = _strdup(str);
+  if (dupstr == NULL)
+    return (NULL);
+  
+  new = malloc(sizeof(list_t));
+  if (new == NULL)
     {
-        free(dupstr);
-        return (NULL);
+      free(dupstr);
+      return (NULL);
     }
+  
+  new->str = dupstr;
+  new->len = _strlen(str);
+  new->next = NULL;
 
-    new->str = dupstr;
-    new->len = _strlen(str);
-    new->next = NULL;
-
-    if (*head == NULL)
+  if (*head == NULL)
     {
-        *head = new;
+      *head = new;
     }
-    else
+  else
     {
-        current = *head;
-        while (current->next != NULL)
-            current = current->next;
-        current->next = new;
+      current = *head;
+      while (current->next != NULL)
+	current = current->next;
+      current->next = new;
     }
-
-    return (new);
+  
+  return (new);
 }
+
